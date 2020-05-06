@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed May 06 17:33:46 CEST 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0171-ea9f-14e0-00000617ac60 
+on database directory memory:C:\Users\yoman\Desktop\JAVA Repos\MDK_Back_Proyects\diceGame_Heroku\testdb with class loader sun.misc.Launcher$AppClassLoader@764c12b6 
+Loaded from file:/C:/Users/yoman/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=AdoptOpenJDK
+java.runtime.version=1.8.0_232-b09
+user.dir=C:\Users\yoman\Desktop\JAVA Repos\MDK_Back_Proyects\diceGame_Heroku
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
