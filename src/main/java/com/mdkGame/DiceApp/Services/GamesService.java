@@ -1,4 +1,4 @@
-package com.SpringGame.DicesGame_JPA.Games;
+package com.mdkGame.DiceApp.Services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,34 +7,32 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mdkGame.DiceApp.Domain.Games;
+import com.mdkGame.DiceApp.Repository.GamesRepository;
+
 @Service
 public class GamesService {
 	
 	@Autowired
 	private GamesRepository gamesRepository;
 
-	public void addNewGameForPlayer(int playerId) {
+	public Games addNewGameForPlayer(int playerId) {
 		Games newGame = new Games(playerId);
-		gamesRepository.save(newGame);
+		Games savedGame = gamesRepository.save(newGame);
+		return savedGame;
 		
 	}
-	
-	public Optional<Games> getGameByGameId(int gameId) {
-		return gamesRepository.findById(gameId);
-	}
-	
-	public List<Games> getAllGames() {
-		List<Games> allGames = new ArrayList<>();
-		gamesRepository.findAll().forEach(allGames::add);
-		return allGames;
-	}
-	
+		
 	public List<Games> getAllGamesForPlayer(int playerId) {
 		List<Games> allGamesForPlayer = new ArrayList<>();
 		gamesRepository.findByPlayerPlayerId(playerId).forEach(allGamesForPlayer::add);
 		return allGamesForPlayer;
 	}
-
+	
+	public Games getGameByGameId(int gameId) {
+		return gamesRepository.findById(gameId).get();
+	}
+		
 	public void deleteAllGamesForPlayer(int playerId) {
 		List<Games> allGamesForPlayer = this.getAllGamesForPlayer(playerId);
 		for (Games games : allGamesForPlayer) {
@@ -42,5 +40,10 @@ public class GamesService {
 		}		
 	}
 	
+	public List<Games> getAllGames() {
+	List<Games> allGames = new ArrayList<>();
+	gamesRepository.findAll().forEach(allGames::add);
+	return allGames;
+}
 
 }

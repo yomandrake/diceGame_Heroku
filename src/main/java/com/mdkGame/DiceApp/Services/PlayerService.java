@@ -1,12 +1,16 @@
-package com.SpringGame.DicesGame_JPA.Players;
+package com.mdkGame.DiceApp.Services;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.mdkGame.DiceApp.Domain.Player;
+import com.mdkGame.DiceApp.Domain.PlayerDTO;
+import com.mdkGame.DiceApp.Repository.PlayerRepository;
 
 @Service
 public class PlayerService {
@@ -15,8 +19,8 @@ public class PlayerService {
 	private PlayerRepository playerRepository;
 	
 	//GET PLAYER BY playerId
-	public Optional<Player> getPlayerById(int playerId) {
-		return playerRepository.findById(playerId);
+	public Player getPlayerById(int playerId) {
+		return playerRepository.findById(playerId).get();
 	}
 	
 	///GET ALL PLAYERS
@@ -28,12 +32,13 @@ public class PlayerService {
 	}
 	
 	//POST -ADD NEW PLAYER
-	public void addNewPlayer(Player newPlayer) {
+	public PlayerDTO addNewPlayer(Player newPlayer) {
 		if(newPlayer.getPlayerName()=="") {
 			newPlayer.setPlayerName("Anonimo");
 		}
 		newPlayer.setPlayerRegDate(LocalDateTime.now().toString());		
-		playerRepository.save(newPlayer);		
+		PlayerDTO newPlayerDTO = new PlayerDTO(playerRepository.save(newPlayer)) ;
+		return newPlayerDTO;
 	}
 	
 	//PUT or UPDATE PLAYER
@@ -50,13 +55,13 @@ public class PlayerService {
 	}
 	
 	//GET Name availability 
-	public boolean isNameUsed(String playerName) {
+	public boolean isLogNameUsed(String playerLogName) {
 		List<String> usedNames = new ArrayList<String>();
 		List<Player> registeredPlayers = this.getAllPlayers();
 		for (Player player : registeredPlayers) {
-			usedNames.add(player.getPlayerName().toLowerCase());
+			usedNames.add(player.getPlayerLogName().toLowerCase());
 		}
-		return usedNames.contains(playerName);
+		return usedNames.contains(playerLogName);
 	}
 
 }

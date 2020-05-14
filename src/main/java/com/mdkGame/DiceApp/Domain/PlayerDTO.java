@@ -1,11 +1,11 @@
-package com.SpringGame.DicesGame_JPA.Players;
+package com.mdkGame.DiceApp.Domain;
 
 public class PlayerDTO {
 	private int playerId;
 	private String playerLogName;
 	private String playerName;
 	private String playerRegDate;
-	private float playerWinStats = (float) 0.00;
+	private float playerWinStats = (float) 0.10;
 	
 	public PlayerDTO() {
 		
@@ -18,8 +18,6 @@ public class PlayerDTO {
 		this.playerRegDate = player.getPlayerRegDate();
 		this.playerWinStats = player.getAvgIsWin();
 	}
-	
-	
 	
 	public int getPlayerId() {
 		return playerId;

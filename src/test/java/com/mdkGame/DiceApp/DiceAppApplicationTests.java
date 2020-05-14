@@ -1,10 +1,10 @@
-package com.SpringGame.DicesGame_JPA;
+package com.mdkGame.DiceApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DicesGameJpaApplicationTests {
+class DiceAppApplicationTests {
 
 	@Test
 	void contextLoads() {

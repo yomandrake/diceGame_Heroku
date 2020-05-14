@@ -1,23 +1,29 @@
-package com.SpringGame.DicesGame_JPA.Games;
+package com.mdkGame.DiceApp.Domain;
 
 import java.time.LocalDateTime;
 import java.util.Random;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
-import com.SpringGame.DicesGame_JPA.Players.Player;
+
 
 @Entity
+@SequenceGenerator(name="seq2", initialValue=15, allocationSize=100)
 public class Games {
 	
-	@Id@GeneratedValue
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq2")
 	private int gameId;
 	private String gameDateTime;
 	private int dice1;
 	private int dice2;
+	private int dice3;
+	private int dice4;
 	private int isWin;
 	private int playerId;
 	
@@ -34,8 +40,15 @@ public class Games {
 		this.setGameDate(currentDateTime.toString());
 		this.dice1 = new Random().nextInt(7);
 		this.dice2 = new Random().nextInt(7);
+		this.dice3 = new Random().nextInt(7);
+		this.dice4 = new Random().nextInt(7);
+		
 		///Decide whether is a Win or Not
-		if(this.dice1 == 6 && this.dice2 == 6) {
+		if(
+			(this.dice1 == this.dice2 && this.dice1 == this.dice3 && this.dice1 == this.dice4)
+			||
+			(this.dice1 + this.dice2 + this.dice3 + this.dice3 >= 16)			
+				) {
 			//this.setWin(true);
 			this.isWin = 1;
 		}else {
@@ -94,6 +107,22 @@ public class Games {
 
 	public void setDice2(int dice2) {
 		this.dice2 = dice2;
+	}
+
+	public int getDice3() {
+		return dice3;
+	}
+
+	public void setDice3(int dice3) {
+		this.dice3 = dice3;
+	}
+
+	public int getDice4() {
+		return dice4;
+	}
+
+	public void setDice4(int dice4) {
+		this.dice4 = dice4;
 	}
 
 	public String getGameDate() {
