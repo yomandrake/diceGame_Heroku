@@ -38,10 +38,10 @@ public class Games {
 	public Games(int playerId) {
 		LocalDateTime currentDateTime = LocalDateTime.now();
 		this.setGameDate(currentDateTime.toString());
-		this.dice1 = new Random().nextInt(7);
-		this.dice2 = new Random().nextInt(7);
-		this.dice3 = new Random().nextInt(7);
-		this.dice4 = new Random().nextInt(7);
+		this.dice1 = new Random().nextInt(6)+1;
+		this.dice2 = new Random().nextInt(6)+1;
+		this.dice3 = new Random().nextInt(6)+1;
+		this.dice4 = new Random().nextInt(6)+1;
 		
 		///Decide whether is a Win or Not
 		if(

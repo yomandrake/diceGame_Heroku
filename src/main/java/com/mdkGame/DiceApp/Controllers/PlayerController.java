@@ -39,15 +39,15 @@ public class PlayerController {
 	/////////////////////
 	//POST -ADD NEW PLAYER
 	@RequestMapping(method=RequestMethod.POST, value = "/players")
-	public ResponseEntity<String> addPlayer(@RequestBody Player newPlayer){
+	public ResponseEntity<?> addPlayer(@RequestBody Player newPlayer){
 		try {
 			
 			if(playerService.isLogNameUsed(newPlayer.getPlayerLogName().toLowerCase())) {
 				return new ResponseEntity<>("Sorry the name is not Available. Try A different one",HttpStatus.CONFLICT);
 			}else {
 				
-				int newPlayerId = playerService.addNewPlayer(newPlayer).getPlayerId();
-				return new ResponseEntity<>("Player Added Succesfully!! Wellcome: " + newPlayerId,HttpStatus.OK);
+				PlayerDTO newPlayerDTO = playerService.addNewPlayer(newPlayer);
+				return new ResponseEntity<>(newPlayerDTO,HttpStatus.OK);
 			}
 
 		}
