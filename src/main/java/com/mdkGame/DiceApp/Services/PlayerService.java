@@ -3,7 +3,7 @@ package com.mdkGame.DiceApp.Services;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +22,10 @@ public class PlayerService {
 	public Player getPlayerById(int playerId) {
 		return playerRepository.findById(playerId).get();
 	}
+	//GET PLAYER BY uuid
+		public List<Player> getPlayerByUuid(String playerUuid) {
+			return playerRepository.findByUuid(playerUuid);
+		}
 	
 	///GET ALL PLAYERS
 	public List<Player> getAllPlayers() {
@@ -36,7 +40,9 @@ public class PlayerService {
 		if(newPlayer.getPlayerName()=="") {
 			newPlayer.setPlayerName("Anonimo");
 		}
-		newPlayer.setPlayerRegDate(LocalDateTime.now().toString());		
+		newPlayer.setPlayerRegDate(LocalDateTime.now().toString());
+		String newUUID = UUID.randomUUID().toString();
+		newPlayer.setUuid(newUUID);
 		PlayerDTO newPlayerDTO = new PlayerDTO(playerRepository.save(newPlayer)) ;
 		return newPlayerDTO;
 	}
@@ -63,5 +69,7 @@ public class PlayerService {
 		}
 		return usedNames.contains(playerLogName);
 	}
+	
+	
 
 }

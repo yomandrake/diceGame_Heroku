@@ -39,15 +39,16 @@ public class PlayerController {
 	/////////////////////
 	//POST -ADD NEW PLAYER
 	@RequestMapping(method=RequestMethod.POST, value = "/players")
-	public ResponseEntity<?> addPlayer(@RequestBody Player newPlayer){
+	public ResponseEntity<?> addPlayer(@RequestBody Player newPlayerDTO){
 		try {
 			
-			if(playerService.isLogNameUsed(newPlayer.getPlayerLogName().toLowerCase())) {
+			if(playerService.isLogNameUsed(newPlayerDTO.getPlayerLogName().toLowerCase())) {
 				return new ResponseEntity<>("Sorry the name is not Available. Try A different one",HttpStatus.CONFLICT);
 			}else {
 				
-				PlayerDTO newPlayerDTO = playerService.addNewPlayer(newPlayer);
-				return new ResponseEntity<>(newPlayerDTO,HttpStatus.OK);
+				
+				PlayerDTO newPlayerDTOSaved = playerService.addNewPlayer(newPlayerDTO);
+				return new ResponseEntity<>(newPlayerDTOSaved,HttpStatus.OK);
 			}
 
 		}
@@ -102,6 +103,27 @@ public class PlayerController {
 						
 			//Return DTO Player
 			return new ResponseEntity<>(new PlayerDTO(requestedPlayer),HttpStatus.OK);
+
+		}
+		 catch (Exception e)
+        {
+            String errorString =  "ERROR " + e.getMessage();
+            System.out.println(errorString);
+            return new ResponseEntity<>(  "Something Went Wrong!!..", HttpStatus.BAD_REQUEST);
+        }
+		
+	}
+	
+	///GET PLAYER BY UUID
+	@RequestMapping(method=RequestMethod.GET, value = "/players/uuid/{playerUuid}")
+	public ResponseEntity<?> getPlayerByUuid(@PathVariable String playerUuid) {
+		List<Player> requestedPlayers;
+		try {
+			//Retrieve Players
+			requestedPlayers = playerService.getPlayerByUuid(playerUuid.toString());
+			
+			//Return DTO Player
+			return new ResponseEntity<>(requestedPlayers,HttpStatus.OK);
 
 		}
 		 catch (Exception e)

@@ -20,8 +20,11 @@ public class Player {
 	//private String playerLogPass;
 	private String playerName;
 	private String playerRegDate;
+	private String uuid;
+	
 	@Transient
 	private float playerWinStats = (float) 0.00;
+	
 
 //	@PersistenceConstructor
 //	public Player(String playerId, String playerLogName, String playerLogPass, String playerName, String playerRegDate) {
@@ -76,6 +79,19 @@ public class Player {
 	public void setAvgIsWin(float avgIsWin) {
 		this.playerWinStats = avgIsWin;
 	}
+
+
+	public String getUuid() {
+		return uuid;
+	}
+
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+
+
 	
 //	public String getPlayerLogPass() {
 //		return playerLogPass;

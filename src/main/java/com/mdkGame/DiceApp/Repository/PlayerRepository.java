@@ -1,5 +1,7 @@
 package com.mdkGame.DiceApp.Repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -11,4 +13,6 @@ public interface PlayerRepository extends CrudRepository<Player, Integer>{
 //	 @Query(value = "SELECT next_val FROM hibernate_sequence limit 1", nativeQuery = 
 //		        true)
 //	int getNextSeriesId();
+	
+	public List<Player> findByUuid(String playerUuid);
 }

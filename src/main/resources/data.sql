@@ -1,9 +1,9 @@
-INSERT INTO `player` (`player_id`, `player_log_name`, `player_name`, `player_reg_date`) VALUES
-(1, 'gamer1',  'Juan', '2020-05-14T14:15:58.721'),
-(2, 'gamer2', 'Roberta', '2020-05-14T14:15:58.722'),
-(3, 'gamer3', 'Pepo', '2020-05-14T14:15:58.723'),
-(4, 'gamer4', 'Luisa','2020-05-14T14:15:58.724'),
-(5, 'gamer5', 'Jhon', '2020-05-14T14:15:58.725');
+INSERT INTO `player` (`player_id`, `player_log_name`, `player_name`, `player_reg_date`,`uuid`) VALUES
+(1, 'gamer1',  'Juan', '2020-05-14T14:15:58.721',  'uuidString1'),
+(2, 'gamer2', 'Roberta', '2020-05-14T14:15:58.722',  'uuidString2'),
+(3, 'gamer3', 'Pepo', '2020-05-14T14:15:58.723',  'uuidString3'),
+(4, 'gamer4', 'Luisa','2020-05-14T14:15:58.724',  'uuidString4'),
+(5, 'gamer5', 'Jhon', '2020-05-14T14:15:58.725',  'uuidString5');
 
 INSERT INTO `games` (`game_id`, `dice1`, `dice2`, `dice3`, `dice4`, `game_date_time`, `is_win`, `player_id`, `player_player_id`) VALUES
 (1, 1, 4, 0, 3, '2020-05-14T18:41:26.529', 0, 3, 3),
