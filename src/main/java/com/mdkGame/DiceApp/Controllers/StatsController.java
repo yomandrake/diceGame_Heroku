@@ -95,12 +95,29 @@ public class StatsController {
 	public ResponseEntity<?> getWorstPlayerStatics() {
 
 		try {
-			//Get all Games
 			List<Player> allPlayers = playerService.getAllPlayers();
 			allPlayers.forEach(player -> player.setAvgIsWin(statsService.getStatics(gamesService.getAllGamesForPlayer(player.getPlayerId())).getAvgIsWin()));
 			allPlayers.sort(Comparator.comparing(Player::getAvgIsWin));//Tested outside App
 			PlayerDTO worstPlayer =new PlayerDTO(allPlayers.get(0));	
 			return new ResponseEntity<>(worstPlayer,HttpStatus.OK);
+		}
+		 catch (Exception e)
+        {
+            String errorString =  "ERROR " + e.getMessage();
+            System.out.println(errorString);
+            return new ResponseEntity<>( "Something Went Wrong!!.." , HttpStatus.BAD_REQUEST);
+        }
+	}
+	
+	//GET Ranking of Players ordered by avg isWin 
+	@RequestMapping(method=RequestMethod.GET,value = "/players/ranking")
+	public ResponseEntity<?> getPlayersRanking() {
+
+		try {
+			List<Player> allPlayers = playerService.getAllPlayers();
+			allPlayers.forEach(player -> player.setAvgIsWin(statsService.getStatics(gamesService.getAllGamesForPlayer(player.getPlayerId())).getAvgIsWin()));
+			allPlayers.sort(Comparator.comparing(Player::getAvgIsWin));//Tested outside App	
+			return new ResponseEntity<>(allPlayers,HttpStatus.OK);
 		}
 		 catch (Exception e)
         {

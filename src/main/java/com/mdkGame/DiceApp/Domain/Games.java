@@ -13,7 +13,7 @@ import javax.persistence.SequenceGenerator;
 
 
 @Entity
-@SequenceGenerator(name="seq2", initialValue=15, allocationSize=100)
+@SequenceGenerator(name="seq2", initialValue=31, allocationSize=100)
 public class Games {
 	
 	@Id

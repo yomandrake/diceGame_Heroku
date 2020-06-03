@@ -3,6 +3,8 @@ package com.mdkGame.DiceApp.Controllers;
 import java.util.ArrayList;
 
 import java.util.List;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +45,7 @@ public class PlayerController {
 		try {
 			
 			if(playerService.isLogNameUsed(newPlayerDTO.getPlayerLogName().toLowerCase())) {
-				return new ResponseEntity<>("Sorry the name is not Available. Try A different one",HttpStatus.CONFLICT);
+				return new ResponseEntity<>(new JSONObject().put("Error","Sorry the name is not Available. Try A different one").toString(),HttpStatus.CONFLICT);
 			}else {
 				
 				
