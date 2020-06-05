@@ -1,7 +1,5 @@
 package com.mdkGame.DiceApp.Domain;
 
-import java.util.Random;
-
 public class GameDTO {
 	
 	private int gameId;

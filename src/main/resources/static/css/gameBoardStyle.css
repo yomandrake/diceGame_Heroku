@@ -1,0 +1,277 @@
+
+html, body {
+    
+    padding: 10px;
+    font-size: 10px;
+    background-color: #ffcc5c !important;
+    font-size: 12px;
+    min-height: 500px;
+    max-width: 850px;
+    justify-content: center;
+    margin: auto;
+        
+}
+
+/**SITE LOG IN*/
+.site-description{
+    text-align: center;
+    padding: 50px;
+    min-width: 350px;
+    bottom: 50px;
+}
+
+#signInPage{
+    margin-top: 40%;
+    font-size: 1.3rem;
+    display: block;
+}
+.diceSignIn{
+    margin: auto;
+    padding: 10px;
+}
+#playerForm{
+    min-width: 100px;
+    margin-top: 30px;
+}
+
+#registerButton{
+    margin-top: 4px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #3B8E9D;
+
+}
+
+/**SITE BOARDGAME*/
+#exitFooter{
+    text-align:right;
+    margin-right: 20px;
+}
+
+.boardGame{
+    background: rgb(255,204,92);
+    background: linear-gradient(27deg, rgba(255,204,92,1) 0%, rgba(82,174,179,1) 6%, rgba(238,79,64,1) 30%, rgba(255,204,92,1) 100%);
+    opacity: 1;
+    border-radius: 5px;
+    padding: 1rem;    
+}
+
+.row{
+    padding: 10px;
+}
+
+/* Grid items */
+.game-item
+{
+     /* Box Display */
+     border-radius: 5px;
+     background-color: #d96459;
+     padding: 10px; 
+}
+
+
+/*Canvas Item*/
+.diceCanvas-item
+{
+    background-color: #d96459;
+    text-align: center;
+    min-width: 400px;
+    height: 100%;
+
+}
+#playerCanvasTitle{
+    font-style: italic;
+    font-size: 1.7rem;    
+}
+#diceCanvas{
+    margin-top: 5px;
+}
+/* Button Section */
+.dice-roll__rollDices--btnDiv
+{
+width: 100%;
+}
+.dice-roll__rollDices--btn
+{
+    /* button */
+    display: inline-block;
+    border-radius: 25px;
+    background-color: #ffcc5c;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    width: 20rem;
+
+    vertical-align: middle;
+    border: none;
+
+    /* Text */
+    font-size: 1.5rem;
+    color: #26465f;
+    font-weight: bolder;
+    margin: auto;
+    
+}
+.dice-roll__rollDices--btn:hover{
+    animation: heartBeat; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s; /* don't forget to set a duration! */
+}
+
+
+.last-played-item, .winner-item
+{
+    background-color: #d96459;
+    text-align: center;    
+    max-width: 95%;
+    min-height: 200px;
+    height: 48%;    
+    margin: auto;
+    position: relative;
+    min-width: 220px;
+    
+}
+#lastPlayedText, #winnerText {
+    position: absolute;
+    bottom: 10%;
+    padding-right: 20px;
+    width: 100%;
+}
+
+
+
+/* Position Images and size*/
+.imgLastPlayed, .imgBestPlayer {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60%;
+  }
+
+
+  /*Rangking Table*/
+.ranking-item, .rolling-history-item {
+    max-width: 95%;
+    margin: auto;
+    height: 220px;
+    background-color: #d96459;
+    /* Inner Shadow */
+    -moz-box-shadow:    inset 0 0 1px #13232f;
+    -webkit-box-shadow: inset 0 0 1px #13232f;
+    box-shadow:         inset 0 0 1px #13232f;
+    text-align: center;
+    min-width: 250px;
+}
+.dice-roll__ranking--title, .dice-roll__history--title{
+    color: #26465f;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bolder;
+    cursor: pointer;
+    /* Movemnt */
+    transition-property: position;
+    transition-duration: .5s;
+}
+.dice-roll__ranking--list, .dice-roll__history--list
+{
+     width: 100%;
+     background-color: #3B8E9D;
+     margin: auto;
+     height: 80%;
+     display: inline-block;
+     border-radius: 5px;
+
+     -moz-box-shadow:    inset 0 0 1px #13232f;
+     -webkit-box-shadow: inset 0 0 1px #13232f;
+     box-shadow:         inset 0 0 1px #13232f;
+
+     padding: 5px;
+     overflow-y: auto;
+}
+
+#gameRankingTable__titleRow, #gameHistoryTable__titleRow{
+    background-color: #26465f;
+    color: #80bff2;
+}
+
+.gameStatsTable__titleRow--posNumber,.gameStatsTable__titleRow--rolls, .gameStatsTable__titleRow--winPerc
+{
+     width: 10%;
+}
+.gameStatsTable__titleRow--Name
+{
+     width: 40%;
+}
+.gameStatsTable__titleRow--winBar
+{
+     width: 30%;
+}
+
+
+.gameHistoryTable__titleRow--rollNumber, .gameHistoryTable__titleRow--result
+{
+     width: 20%;
+}
+.gameHistoryTable__titleRow--dices
+{
+    width: 60%;
+}
+
+
+
+/* Buttons */
+#refreshHistory:hover, #deleteHistory:hover, #refreshRanking:hover, #biggestWinnerRefresh:hover, #biggestLoserRefresh:hover
+{
+     text-shadow: 1px 1px #26465f;
+     color: #CB6120;
+     /* position */
+     transform: translateY(-2px);
+
+}
+
+/**Style for scroll bars*/
+.cute_scroll::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #4d8cbf ;
+
+}
+
+.cute_scroll::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px #3a698f ;
+	border-radius: 10px;
+	background-color: #4d8cbf  ;
+  border-left: 3px solid #61afef;
+  border-right: 3px solid #61afef;
+
+}
+
+.cute_scroll::-webkit-scrollbar-thumb
+{
+	border-radius: 20px;
+	-webkit-box-shadow: inset 0 0 px #13232f ;
+	background-color: #26465f  ;
+
+}
+
+.exitButton {
+    background-color: #3B8E9D;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: relative;
+}

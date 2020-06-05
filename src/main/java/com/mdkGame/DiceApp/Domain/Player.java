@@ -25,6 +25,10 @@ public class Player {
 	@Transient
 	private float playerWinStats = (float) 0.00;
 	
+	@Transient
+	private Stats playerStats;
+	
+	
 
 //	@PersistenceConstructor
 //	public Player(String playerId, String playerLogName, String playerLogPass, String playerName, String playerRegDate) {
@@ -88,6 +92,16 @@ public class Player {
 
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
+	}
+
+
+	public Stats getPlayerStats() {
+		return playerStats;
+	}
+
+
+	public void setPlayerStats(Stats playerStats) {
+		this.playerStats = playerStats;
 	}
 
 

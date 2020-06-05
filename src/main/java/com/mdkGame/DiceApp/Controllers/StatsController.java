@@ -90,7 +90,9 @@ public class StatsController {
 		
 	}
 	
-	//GET Worst Player Statics
+	/**
+	 * GET Worst Player Statics 
+	 **/
 	@RequestMapping(method=RequestMethod.GET,value = "/players/ranking/looser")
 	public ResponseEntity<?> getWorstPlayerStatics() {
 
@@ -109,15 +111,28 @@ public class StatsController {
         }
 	}
 	
-	//GET Ranking of Players ordered by avg isWin 
+	/**
+	 * GET Ranking of Players ordered by avg isWin 
+	 **/
 	@RequestMapping(method=RequestMethod.GET,value = "/players/ranking")
 	public ResponseEntity<?> getPlayersRanking() {
 
 		try {
-			List<Player> allPlayers = playerService.getAllPlayers();
-			allPlayers.forEach(player -> player.setAvgIsWin(statsService.getStatics(gamesService.getAllGamesForPlayer(player.getPlayerId())).getAvgIsWin()));
-			allPlayers.sort(Comparator.comparing(Player::getAvgIsWin));//Tested outside App	
-			return new ResponseEntity<>(allPlayers,HttpStatus.OK);
+			List<PlayerDTO> listPlayersDTO;
+			//Retrieve all players
+			listPlayersDTO = playerService.getAllPlayersDTO();
+			
+			//Calculate their Stats
+			listPlayersDTO.forEach(
+					player -> {
+					Stats playerStats = statsService.getStatics(gamesService.getAllGamesForPlayer(player.getPlayerId()));
+					player.setPlayerWinStats(playerStats.getAvgIsWin());
+					player.setQtGames(playerStats.getQtGames());
+					player.setQtIsWin(playerStats.getQtIsWin());
+					});			
+			
+			listPlayersDTO.sort(Comparator.comparing(PlayerDTO::getPlayerWinStats));//Tested outside App	
+			return new ResponseEntity<>(listPlayersDTO,HttpStatus.OK);
 		}
 		 catch (Exception e)
         {

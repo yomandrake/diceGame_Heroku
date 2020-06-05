@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mdkGame.DiceApp.Domain.Player;
 import com.mdkGame.DiceApp.Domain.PlayerDTO;
+import com.mdkGame.DiceApp.Domain.Stats;
 import com.mdkGame.DiceApp.Services.GamesService;
 import com.mdkGame.DiceApp.Services.PlayerService;
 import com.mdkGame.DiceApp.Services.StatsService;
@@ -65,23 +67,26 @@ public class PlayerController {
 	////////////////////
 	/*--GET REQUESTs--*/
 	////////////////////
-	///GET ALL PLAYERS
-	@RequestMapping("/players")//GET ALL PLAYERS
+	///GET ALL PLAYERS DTO
+	@RequestMapping("/players")//GET ALL PLAYERS DTO
 	public ResponseEntity<?> getAllPlayers() {
-		List<Player> listPlayers;
+		
 		try {
+			List<PlayerDTO> listPlayersDTO;
 			//Retrieve all players
-			listPlayers = playerService.getAllPlayers();
+			listPlayersDTO = playerService.getAllPlayersDTO();
 			
 			//Calculate their Stats
-			listPlayers.forEach(player -> player.setAvgIsWin(statsService.getStatics(gamesService.getAllGamesForPlayer(player.getPlayerId())).getAvgIsWin()));
-			
-			//Transform to DTOs
-			List<PlayerDTO> allPlayersDTO = new ArrayList<>();
-			listPlayers.forEach(player -> allPlayersDTO.add(new PlayerDTO(player)));			
+			listPlayersDTO.forEach(
+					player -> {
+					Stats playerStats = statsService.getStatics(gamesService.getAllGamesForPlayer(player.getPlayerId()));
+					player.setPlayerWinStats(playerStats.getAvgIsWin());
+					player.setQtGames(playerStats.getQtGames());
+					player.setQtIsWin(playerStats.getQtIsWin());
+					});			
 			
 			//Return as PLayerDTOs List
-			return new ResponseEntity<>(allPlayersDTO,HttpStatus.OK);
+			return new ResponseEntity<>(listPlayersDTO,HttpStatus.OK);
 			
 		}
 		 catch (Exception e)
@@ -92,19 +97,23 @@ public class PlayerController {
         }
 	}
 	
+	
 	///GET PLAYER BY ID
 	@RequestMapping(method=RequestMethod.GET, value = "/players/{playerId}")
 	public ResponseEntity<?> getPlayer(@PathVariable int playerId) {
-		Player requestedPlayer;
+		
 		try {
+			PlayerDTO requestedPlayer;
 			//Retrieve Player
 			requestedPlayer = playerService.getPlayerById(playerId);
 			
-			//Calculate Win Stats
-			requestedPlayer.setAvgIsWin(statsService.getStatics(gamesService.getAllGamesForPlayer(playerId)).getAvgIsWin());
-						
+			//Calculate Stats
+			Stats playerStats = statsService.getStatics(gamesService.getAllGamesForPlayer(playerId));
+			requestedPlayer.setPlayerWinStats(playerStats.getAvgIsWin());
+			requestedPlayer.setQtGames(playerStats.getQtGames());
+			requestedPlayer.setQtIsWin(playerStats.getQtIsWin());
 			//Return DTO Player
-			return new ResponseEntity<>(new PlayerDTO(requestedPlayer),HttpStatus.OK);
+			return new ResponseEntity<>(requestedPlayer,HttpStatus.OK);
 
 		}
 		 catch (Exception e)
@@ -119,7 +128,7 @@ public class PlayerController {
 	///GET PLAYER BY UUID
 	@RequestMapping(method=RequestMethod.GET, value = "/players/uuid/{playerUuid}")
 	public ResponseEntity<?> getPlayerByUuid(@PathVariable String playerUuid) {
-		List<Player> requestedPlayers;
+		List<PlayerDTO> requestedPlayers;
 		try {
 			//Retrieve Players
 			requestedPlayers = playerService.getPlayerByUuid(playerUuid.toString());

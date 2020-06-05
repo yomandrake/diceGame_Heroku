@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Burning Dice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Local Styles -->
+    <link rel="stylesheet" type="text/css" href="css/gameBoardStyle.css">
+    <!-- Local JavaScript -->
+    <!-- <script src="js/main.js"></script> -->
+
+    <!-- Bootstrap Files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!-- CSS Animation Library-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- P5 JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+
+    <!-- Sweetr Alert Optional! -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- MyScripts -->    
+    <script src="js/main.js"></script>
+    <script src="js/sketch.js"></script>
+
+    <!-- Mobile First!-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+
+<body>
+
+    <!-- SIGN IN PAGE -->
+    <div id="signInPage">
+        <div class="d-flex flex-sm-row flex-column">
+            <div class="site-description">
+                <h1>MDK - Dices Game</h1>
+                <p>Simple Game done with Spring Boot</p>
+            </div>
+
+            <section class="diceSignIn">
+                <form id="playerForm" onsubmit="submitPlayerForm(event, this)" class="form-inline">
+
+                    <div class="d-flex flex-row justify-content-center" style="width: 100%;">
+
+                        <div class="input-group mb-2 mr-sm-2">
+                            <label class="sr-only" for="inlineFormInputName2">Name</label>
+                            <input name="playerName" type="text" class="form-control mb-2 mr-sm-2"
+                                id="inlineFormInputName2" placeholder="Your Name" required>
+                        </div>
+
+
+                        <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group-prepend mb-2">
+                                <div class="input-group-text">@</div>
+                            </div>
+                            <input name="playerLogName" type="text" class="form-control"
+                                id="inlineFormInputGroupUsername2" placeholder="NickName" required>
+                        </div>
+                    </div>
+
+                    
+                    <button id="registerButton" type="submit" class="btn btn-primary btn-lg btn-block">
+                        INSERT COIN    
+                    </button>
+
+                </form>
+            </section>
+        </div>
+
+
+    </div>
+
+
+
+
+    <!-- BOARDGAME  -->
+    <div id="diceGame_boardgame" class="container boardGame" style="display: none;">
+
+        <div class="row">
+            <div class="col">
+                <div class="game-item" style="text-align: center; padding: 10px;">
+                    <img class="animate__animated animate__flip" src="img/dices-logoHeader.jpg" alt="Logo"></img>
+                    <br>
+                    <h1 class="animate__animated animate__backInDown animate__delay-1s"><b>MDK - Dices</b></h3>
+                        <h2 class="animate__animated animate__backInUp animate__delay-1s"> Game </h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="dicesRow" class="row no-gutters">
+            <div class="col-sm-8" style="margin-bottom: 2px;">
+                <div class="diceCanvas-item game-item">
+                    <div class="dice-roll__rollDices--btnDiv">
+                        <div class="animate__animated animate__backInLeft animate__delay-1s">
+                            <b id="playerCanvasTitle">Welcome to the table!! _<b id="playerCanvasName"></b></b>
+                        </div>
+                        <div id='diceCanvas'></div>
+
+                        <div id="diceRollingBTN" class="dice-roll__rollDices--btn" onclick="rollButton()">
+                            Let's play !!!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+
+                <div class="last-played-item game-item">
+                    <img id="lastRollImg" src="img/dices-logoHeader.jpg" alt="Logo" class="imgLastPlayed  animate__animated animate__jackInTheBox"></img>
+                    <div id="lastPlayedText">
+                        <h3><b>Your Last Roll</b></h3>
+                        <h4 id="lastRollResult"> --- </h4>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="winner-item game-item">
+                    <img src="data/trophy.svg" alt="Logo" class="imgBestPlayer"></img>
+                    <div id="winnerText">
+                        <h3><b>MDK-Dices Winner is.. </b></h3>
+                        <h4 id="winnerLogName" style="font-style: oblique;"> bestPlayer! </h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col">
+                <div class="game-item rolling-history-item">
+
+                    <div class="dice-roll__history--title">
+                        Rolling History
+                        <i id="refreshHistory" class="fa fa-refresh" onclick="getAllGamesForPlayer()"></i>
+                        <i id="deleteHistory" class="fa fa-trash" aria-hidden="true" onclick="deleteAllGamesForPlayer()"></i>
+                    </div>
+
+
+                    <div class="dice-roll__history--list cute_scroll">
+
+                        <table id="playerHistoryTable" style="width: 100%;">
+
+                            <tr id="gameHistoryTable__titleRow">
+                                <th class="gameHistoryTable__titleRow--rollNumber">
+                                    #
+                                </th>
+                                <th colspan="4" class="gameHistoryTable__titleRow--dices">
+                                    Dices Rolled
+                                </th>
+                                <th class="gameHistoryTable__titleRow--result">
+                                    Result
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col">
+                <div class="game-item ranking-item">
+
+                    <div class="dice-roll__ranking--title">
+                        Lucky Ranking
+                        <i id="refreshRanking" class="fa fa-refresh" onclick="updateRankingButton()"></i>
+                    </div>
+
+                    <div class="dice-roll__ranking--list cute_scroll">
+
+                        <table id="gameRankingTable">
+                            <tr id="gameRankingTable__titleRow">
+                                <th class="gameStatsTable__titleRow--posNumber">
+                                    #
+                                </th>
+                                <th class="gameStatsTable__titleRow--Name">
+                                    Name
+                                </th>
+                                <th class="gameStatsTable__titleRow--rolls">
+                                    Rolls
+                                </th>
+                                <th class="gameStatsTable__titleRow--winPerc">
+                                    Wins Percentage
+                                </th>
+                                <th class="gameStatsTable__titleRow--winBar">
+                                    Lucky Bar
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="exitFooter">
+            <button class="exitButton" onclick="exitGameButton()">Exit Game</button>
+        </div>
+        
+
+    </div>
+    
+    <!-- <button onclick="toggleDiceGame()">Toggle Dice Game</button> -->    
+</body>
+
+</html>

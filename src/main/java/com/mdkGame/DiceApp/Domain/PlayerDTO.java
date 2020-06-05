@@ -6,6 +6,8 @@ public class PlayerDTO {
 	private String playerName;
 	private String playerRegDate;
 	private float playerWinStats = (float) 0.10;
+	private int qtGames = 0;
+	private int qtIsWin = 0;
 	
 	public PlayerDTO() {
 		
@@ -50,6 +52,22 @@ public class PlayerDTO {
 
 	public void setPlayerWinStats(float playerWinStats) {
 		this.playerWinStats = playerWinStats;
+	}
+
+	public int getQtGames() {
+		return qtGames;
+	}
+
+	public void setQtGames(int qtGames) {
+		this.qtGames = qtGames;
+	}
+
+	public int getQtIsWin() {
+		return qtIsWin;
+	}
+
+	public void setQtIsWin(int qtIsWin) {
+		this.qtIsWin = qtIsWin;
 	}
 
 

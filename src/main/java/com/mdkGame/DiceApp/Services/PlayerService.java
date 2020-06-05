@@ -19,12 +19,20 @@ public class PlayerService {
 	private PlayerRepository playerRepository;
 	
 	//GET PLAYER BY playerId
-	public Player getPlayerById(int playerId) {
-		return playerRepository.findById(playerId).get();
+//	public Player getPlayerById(int playerId) {
+//		return playerRepository.findById(playerId).get();
+//	}
+	public PlayerDTO getPlayerById(int playerId) {
+		//Get player from Repo and convert to DTO
+		PlayerDTO reqPlayer = new PlayerDTO (playerRepository.findById(playerId).get());
+		return reqPlayer;
 	}
+	
 	//GET PLAYER BY uuid
-		public List<Player> getPlayerByUuid(String playerUuid) {
-			return playerRepository.findByUuid(playerUuid);
+		public List<PlayerDTO> getPlayerByUuid(String playerUuid) {
+			List<PlayerDTO> playersUuid = new ArrayList<PlayerDTO>();
+			playerRepository.findByUuid(playerUuid).forEach(p -> playersUuid.add(new PlayerDTO(p)));
+			return playersUuid;
 		}
 	
 	///GET ALL PLAYERS
@@ -34,6 +42,14 @@ public class PlayerService {
 		playerRepository.findAll().forEach(p -> allPlayers.add(p));//With lambda
 		return allPlayers;
 	}
+	///GET ALL PLAYERS DTO
+	public List<PlayerDTO> getAllPlayersDTO() {
+		List<PlayerDTO> allPlayersDTO = new ArrayList<PlayerDTO>();
+		//playerRepository.findAll().forEach(allPlayers::add);//With method reference
+		playerRepository.findAll().forEach(p -> allPlayersDTO.add(new PlayerDTO(p)));//With lambda
+		return allPlayersDTO;
+	}
+	
 	
 	//POST -ADD NEW PLAYER
 	public PlayerDTO addNewPlayer(Player newPlayer) {
