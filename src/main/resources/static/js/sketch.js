@@ -95,13 +95,11 @@ function rollButton() {
 /**FETCH NEW GAME FOR A PLAYER BY ID */
 ///Async function to fetch a new game for player by player id
 async function fetchNewGame() {
-  console.log("fetching server response");
   const response = await fetch(`${this.localURL}players/` + playerLogged.playerId + '/games', {
     method: 'post'
   });
   if (response.status == 200) {
     const data = await response.json();
-    console.log(data);
     lastRollJson = data;
     dicesPlayed = [data.dice1, data.dice2, data.dice3, data.dice4];
     isWin = data.isWin;

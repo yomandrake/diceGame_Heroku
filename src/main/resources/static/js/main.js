@@ -46,7 +46,6 @@ function startNewGame() {
       console.log('error ranking table:');
       console.log(error);
     });
-  cleanHistoryTable();
 }
 
 
@@ -253,8 +252,9 @@ function exitGame() {
   this.playerLogged = undefined;
   this.dicesPlayed = [0, 0, 0, 0];
   this.isWin = undefined;
-  document.getElementById("playerCanvasTitle").innerHTML = '';
+  document.getElementById("playerCanvasName").innerHTML = '';
   cleanRankingTable();
+  cleanHistoryTable();
   this.diceRanking = [];
   updateWinner("");
   this.lastRollJson = undefined;
