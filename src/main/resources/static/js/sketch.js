@@ -1,13 +1,17 @@
 ////Global Variables
+var largeCanvas = true;
 var numPlay = 0;
-var gridSize = 95;
+
+
 
 var num1, num2, num3, num4, num5, num6;
 var diceFacesNum = [1, 2, 3, 4, 5, 6];
 var logoDice;
 var diceShow;
 var diceFacesIMG = [];
-var diceSize = 150;
+
+var diceSize;
+var gridSize;
 
 var randomDices = [0, 0, 0, 0];
 var dicesPlayed = [0, 0, 0, 0];
@@ -28,14 +32,48 @@ function preload() {
   num5 = loadImage("data/5.svg");
   num6 = loadImage("data/6.svg");
   diceFacesIMG = [logoDice, num1, num2, num3, num4, num5, num6];
-
 }
+
+
 
 function setup() {
-  var diceCanvas = createCanvas(380, 380);
+
+  if(windowWidth > 500){
+
+    var diceCanvas = createCanvas(380, 380);
+    gridSize = 95;
+    diceSize = 150;
+  }else{
+    largeCanvas = false;
+    var diceCanvas = createCanvas(240, 240);
+    gridSize = 60;
+    diceSize = 100;
+  }
+
+  
   diceCanvas.parent('diceCanvas');
+
   frameRate(60);
 }
+
+/**Trick for resizing on big screen  */
+window.onresize = checkCanvasSize;
+function checkCanvasSize(){
+    if(windowWidth < 500 && largeCanvas){
+      largeCanvas = false;
+      gridSize = 60;
+      diceSize = 100;
+      resizeCanvas(240,240)
+
+    }else if (windowWidth > 500 && !largeCanvas){
+      largeCanvas = true;
+      gridSize = 95;
+      diceSize = 150;
+      resizeCanvas(380,380)
+    }
+}
+
+
 
 function draw() {
   background(128, 206, 214);
