@@ -1,6 +1,6 @@
 # Welcome to MDK - Dices Game !
 
-Hi! This is a simple dices game freely hosted on **Heroku** at   [Dice Game](dices-game-jpa.herokuapp.com/). 
+Hi! This is a simple dices game freely hosted on **Heroku** at   [Dice Game](https://dices-game-jpa.herokuapp.com/). 
 This project was initially done as an exercise in Java 8 / Spring Boot, but it has grow rapidly to add technologies, dependencies and a proper view to reach the actual state of nature.
 
 Here you will find a mirror of the Repo that is deployed and running. You are welcome to explore, suggest, copy, maintain, learn etc. In order to keep it as a free and open source project, I have disabled the chance of playing twice with the same user. Security is enabled but for other reasons, and data base is not persisted after the app automatically turned off.
