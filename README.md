@@ -9,7 +9,7 @@ There are a few reasons behind this, like free hosting and because the spirit of
 If you want to learn about technologies involved, I will soon add some reference to nice and complete documentation, meanwhile feel free to fork, download or clone the repo, and play with. 
 
 # Rules of the game
-Yeah ... well ... the rules of the game are simple and if you do not like it, you can change them so ..... can you discover the rules in the code ?? in that case do not read the net sentence
+Yeah ... well ... the rules of the game are simple and if you do not like it, you can change them so ..... can you discover the rules in the code ?? in that case do not read the next sentence
 > You win if you obtain 4 dices with same number or the addition is 16 or more
  
 # Files 
