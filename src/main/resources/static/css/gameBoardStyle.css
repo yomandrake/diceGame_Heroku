@@ -43,6 +43,13 @@ html, body {
 }
 
 /**SITE BOARDGAME*/
+.diceGame_header{
+    border-radius: 5px;
+    background-color: #d96459;
+    text-align: center;
+    padding: 10px;
+
+}
 #exitFooter{
     text-align:right;
     margin-right: 20px;
@@ -56,9 +63,6 @@ html, body {
     padding: 1rem;    
 }
 
-.row{
-    padding: 10px;
-}
 
 /* Grid items */
 .game-item
@@ -99,16 +103,12 @@ width: 100%;
     padding-top: .75rem;
     padding-bottom: .75rem;
     width: 20rem;
-
-    vertical-align: middle;
+    margin-top: 10px;
     border: none;
-
     /* Text */
     font-size: 1.5rem;
     color: #26465f;
     font-weight: bolder;
-    margin: auto;
-    
 }
 .dice-roll__rollDices--btn:hover{
     animation: heartBeat; /* referring directly to the animation's @keyframe declaration */
@@ -119,15 +119,15 @@ width: 100%;
 .last-played-item, .winner-item
 {
     background-color: #d96459;
-    text-align: center;    
-    max-width: 95%;
+    text-align: center;
     min-height: 250px;
     height: 48%;    
     margin: auto;
     position: relative;
-    min-width: 220px;
-    
+    min-width: 220px;    
 }
+
+
 #lastPlayedText, #winnerText {
     position: absolute;
     bottom: 10%;
@@ -156,7 +156,6 @@ img {
 
   /*Rangking Table*/
 .ranking-item, .rolling-history-item {
-    max-width: 95%;
     margin: auto;
     height: 220px;
     background-color: #d96459;
@@ -273,4 +272,17 @@ img {
     display: inline-block;
     font-size: 16px;
     position: relative;
+}
+
+.rulesButton{
+    background-color: rgb(94, 185, 201);
+    /* Green */
+    border: none;
+    color: white;
+    padding: 10px 26px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 20px;
 }

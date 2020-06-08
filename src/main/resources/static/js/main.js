@@ -261,3 +261,8 @@ function exitGame() {
   document.getElementById('lastRollResult').innerHTML = " --- ";
 }
 
+function alertRules(){
+  swal("Rules", "You win when:" 
+  + "\n" + "- All dices are the same number or"
+  + "\n" + "- Addition is 16 or more" , "success");
+}

@@ -91,9 +91,9 @@
     <!-- BOARDGAME  -->
     <div id="diceGame_boardgame" class="container boardGame" style="display: none;">
 
-        <div class="row">
-            <div class="col">
-                <div class="game-item" style="text-align: center; padding: 10px;">
+        <div class="row no-gutters">
+            <div class="col" style="padding: 1%;">
+                <div class="diceGame_header">
                     <img class="animate__animated animate__wobble" src="img/dices-logoHeader.jpg" alt="Logo"></img>
                     <br>
                     <h1 class="animate__animated animate__backInDown animate__delay-1s"><b> - MDK - </b></h3>
@@ -103,7 +103,7 @@
         </div>
 
         <div id="dicesRow" class="row no-gutters">
-            <div class="col-md-8" style="margin-bottom: 2px;">
+            <div class="col-md-8" style="padding: 1%;">
                 <div class="diceCanvas-item game-item">
                     <div class="dice-roll__rollDices--btnDiv">
                         <div class="animate__animated animate__backInLeft animate__delay-1s">
@@ -117,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" style="padding: 1%;">
 
                 <div class="last-played-item game-item">
                     <img id="lastRollImg" src="img/dices-logoHeader.jpg" alt="Logo" class="imgLastPlayed  animate__animated animate__jackInTheBox"></img>
@@ -127,9 +127,9 @@
                     </div>
                 </div>
 
-                <br>
+                <!-- <div id="separator"></div> -->
 
-                <div class="winner-item game-item">
+                <div class="winner-item game-item" style="margin-top:2% ;">
                     <img src="data/trophy.svg" alt="Logo" class="imgBestPlayer"></img>
                     <div id="winnerText">
                         <h3><b>MDK-Dices Winner is.. </b></h3>
@@ -141,7 +141,7 @@
         </div>
 
         <div class="row no-gutters">
-            <div class="col">
+            <div class="col" style="padding: 1%;">
                 <div class="game-item rolling-history-item">
 
                     <div class="dice-roll__history--title">
@@ -173,7 +173,7 @@
 
             </div>
 
-            <div class="col">
+            <div class="col" style="padding: 1%;">
                 <div class="game-item ranking-item">
 
                     <div class="dice-roll__ranking--title">
@@ -207,7 +207,8 @@
             </div>
         </div>
         <div id="exitFooter">
-            <button class="exitButton" onclick="exitGameButton()">Exit Game</button>
+            <button class="rulesButton" onclick="alertRules()">Rules</button>
+            <button class="exitButton" onclick="exitGameButton()">Exit Game</button>            
         </div>
         
 
