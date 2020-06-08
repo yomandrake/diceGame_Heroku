@@ -1,16 +1,40 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Canvas Template View</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <!-- P5 JS CDN -->
-        <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-        <script src="js/canvasView.js"></script>
+    <!-- P5 JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <script src="js/canvasView.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            background-color: #ffcc5c !important;
+        }
+
+        .button {
+            background-color: #3B8E9D;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
 
 </head>
-<body>
-    <p th:text="'Hello, ' + ${name} + '!'" />
-    <div id='diceCanvas'></div>
 
+<body>
+    <div style="text-align: center;">
+        <p th:text="'Hello, ' + ${name} + '!'" />
+        <div id='diceCanvas'></div>
+        <a href="/" class="button">Go Home</a>
+    </div>
 </body>
+
 </html>
