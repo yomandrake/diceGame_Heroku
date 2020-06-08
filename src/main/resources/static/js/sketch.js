@@ -149,11 +149,18 @@ async function fetchNewGame() {
 /**MINIMUM ROLL TIME */
 function startRoll(){
   document.getElementById('lastRollImg').classList.remove('animate__animated', 'animate__jackInTheBox');
+  numPlay += 1;
+  if(numPlay === 3){
+    numPlay = 0;
+  }
 }
 
 function endRoll(){
   //Update Last Play
-  console.log("End Roll");
+  // console.log("End Roll");
+  if(numPlay === 0){
+    updateRankingButton();
+  }
   
   //Change Last Roll Message and image
   if(lastRollJson.isWin == 1){
