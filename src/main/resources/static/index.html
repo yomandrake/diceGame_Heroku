@@ -38,6 +38,9 @@
     <!-- MyScripts -->    
     <script src="js/main.js"></script>
     <script src="js/sketch.js"></script>
+    <!-- Add a Google font-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Oxygen:wght@500&display=swap" rel="stylesheet"> 
+    
 
 </head>
 
@@ -46,14 +49,14 @@
 <body>
     <!-- SIGN IN PAGE -->
     <div id="signInPage">
-        <div class="d-flex flex-sm-row flex-column">
-            <div class="site-description">
-                <h1>MDK - Dices Game</h1>
+        <div class="d-flex flex-sm-row flex-column" style="font-family: 'Open Sans', sans-serif;">
+            <div class="col site-description" >
+                <h1 style="font-family: 'Oxygen', sans-serif;">MDK - Dices Game</h1>
                 <p>Simple Game done with Spring Boot</p>
                 
             </div>
 
-            <section class="diceSignIn">
+            <section class="col diceSignIn">
                 <form id="playerForm" onsubmit="submitPlayerForm(event, this)" class="form-inline">
 
                     <div class="d-flex flex-row justify-content-center" style="width: 100%;">
@@ -91,7 +94,7 @@
     <!-- BOARDGAME  -->
     <div id="diceGame_boardgame" class="container boardGame" style="display: none;">
 
-        <div class="row no-gutters">
+        <div class="row no-gutters" style="font-family: 'Open Sans', sans-serif">
             <div class="col" style="padding: 1%;">
                 <div class="diceGame_header">
                     <img class="animate__animated animate__wobble" src="img/dices-logoHeader.jpg" alt="Logo"></img>
@@ -107,7 +110,7 @@
                 <div class="diceCanvas-item game-item">
                     <div class="dice-roll__rollDices--btnDiv">
                         <div class="animate__animated animate__backInLeft animate__delay-1s">
-                            <div id="playerCanvasTitle">Welcome to the table!! _<b id="playerCanvasName"></b></div>
+                            <div id="playerCanvasTitle">Welcome to the table!! #<b id="playerCanvasName"></b></div>
                         </div>
                         <div id='diceCanvas'></div>
 
@@ -215,7 +218,7 @@
     </div>
     <p style="font-size: xx-small;">
         Developed with <i class="fa fa-heart" aria-hidden="true" style="color: rgb(203, 38, 32);"></i>
-        by <a href="https://github.com/yomandrake"> mdk </a>
+        by <a href="https://github.com/yomandrake/diceGame_Heroku"> mdk </a>
     </p>
     
     <!-- <button onclick="toggleDiceGame()">Toggle Dice Game</button> -->

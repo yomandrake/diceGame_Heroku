@@ -16,8 +16,8 @@ html, body {
 .site-description{
     text-align: center;
     padding: 50px;
-    min-width: 350px;
-    bottom: 50px;
+    min-width: 300px;
+    margin: auto;
 }
 
 #signInPage{
